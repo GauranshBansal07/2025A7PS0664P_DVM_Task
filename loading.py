@@ -1,7 +1,6 @@
 import csv
 
 from Station import Station
-from Ticket import Ticket
 
 class Loading:
     @staticmethod
