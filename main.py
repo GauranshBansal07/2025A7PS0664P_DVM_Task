@@ -1,14 +1,14 @@
 import uuid
 from Station import Station
 from Ticket import Ticket
-from loading import loading_lines_file, loading_stations_file
-from path import shortest_path, compute_fare
+from loading import Loading
+from path import Path
 from Ticket import Ticket
 
 
 def main():
-    stations_dict = loading_stations_file('stations.csv')
-    lines_dict = loading_lines_file('lines.csv')
+    stations_dict = Loading.loading_stations_file('stations.csv')
+    lines_dict = Loading.loading_lines_file('lines.csv')
     tickets_list = []
 
     while True:
@@ -34,10 +34,10 @@ def main():
                 print("Invalid station name(s). Please try again.")
                 continue
 
-            path, path_lines = shortest_path(start, end, stations_dict, lines_dict)
+            path, path_lines = Path.shortest_path(start, end, stations_dict, lines_dict)
 
             ticket_id = str(uuid.uuid4())
-            fare = compute_fare(path)
+            fare = Path.compute_fare(path)
             ticket = Ticket(ticket_id, path, path_lines, fare)
             tickets_list.append(ticket)
 
